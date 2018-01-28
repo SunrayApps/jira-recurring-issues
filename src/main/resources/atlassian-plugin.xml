@@ -13,12 +13,13 @@
     <!-- add our web resources -->
     <web-resource key="recurring-issues-resources" name="recurring-issues Web Resources">
         <dependency>com.atlassian.auiplugin:ajs</dependency>
+        <dependency>com.atlassian.jira.jira-quick-edit-plugin:quick-form-templates</dependency>
         
         <resource type="download" name="recurring-issues.css" location="/css/recurring-issues.css"/>
         <resource type="download" name="recurring-issues.js" location="/js/recurring-issues.js"/>
         <resource type="download" name="images/" location="/images"/>
 
-        <context>recurring-issues</context>
+        <context> jira.global</context>
     </web-resource>
     
 </atlassian-plugin>
