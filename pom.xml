@@ -76,7 +76,8 @@
                 <extensions>true</extensions>
                 <configuration>
                     <productVersion>${jira.version}</productVersion>
-                    <productDataVersion>${jira.version}</productDataVersion>
+                    <productDataVersion>7.1.0</productDataVersion>
+                    <productDataPath>${basedir}/src/test/resources/jira-7-1-0-resources.zip</productDataPath>
                     <enableQuickReload>true</enableQuickReload>
                     <enableFastdev>false</enableFastdev>
                     <instructions>
