@@ -1,0 +1,13 @@
+{namespace SunrayApps.Templates.RecurringIssues}
+
+/**
+ * Renders a Create recurring checkbox
+ */
+{template .checkbox}
+    <div class="buttons">
+        <label for="qf-create-recurring" class="qf-create-recurring">
+            <input id="qf-create-recurring"
+                   onchange="SunrayApps.recurringIssues.toggleRecurringIssuesFields(this);"
+                   type="checkbox">Create recurring
+        </label>
+{/template}

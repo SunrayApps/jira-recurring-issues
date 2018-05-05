@@ -2,24 +2,31 @@
     <plugin-info>
         <description>${project.description}</description>
         <version>${project.version}</version>
-        <vendor name="${project.organization.name}" url="${project.organization.url}" />
+        <vendor name="${project.organization.name}" url="${project.organization.url}"/>
         <param name="plugin-icon">images/pluginIcon.png</param>
         <param name="plugin-logo">images/pluginLogo.png</param>
     </plugin-info>
 
     <!-- add our i18n resource -->
     <resource type="i18n" name="i18n" location="recurring-issues"/>
-    
+
     <!-- add our web resources -->
     <web-resource key="recurring-issues-resources" name="recurring-issues Web Resources">
+        <dependency>com.atlassian.soy.soy-template-plugin:soy-deps</dependency>
         <dependency>com.atlassian.auiplugin:ajs</dependency>
         <dependency>com.atlassian.jira.jira-quick-edit-plugin:quick-form-templates</dependency>
-        
+
+        <transformation extension="soy">
+            <transformer key="soyTransformer"/>
+        </transformation>
+
         <resource type="download" name="recurring-issues.css" location="/css/recurring-issues.css"/>
         <resource type="download" name="recurring-issues.js" location="/js/recurring-issues.js"/>
         <resource type="download" name="images/" location="/images"/>
-
-        <context> jira.global</context>
+        <resource type="soy" name="links" location="/templates/checkbox.soy"/>
+        <resource type="download" name="Checkbox.soy.js" location="/templates/checkbox.soy"/>
+        <resource type="soy" name="RecurringIssuesForm" location="/templates/recurringIssuesForm.soy"/>
+        <resource type="download" name="RecurringIssuesForm.soy.js" location="/templates/recurringIssuesForm.soy"/>
+        <context>jira.global</context>
     </web-resource>
-    
 </atlassian-plugin>

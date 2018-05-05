@@ -1,0 +1,18 @@
+{namespace SunrayApps.Templates.RecurringIssues}
+
+/**
+ * Renders peropd field
+ */
+{template .periodField}
+    <div class="field-group" style="display: none;">
+        <label for="recurring-issues-period">
+            Create issue every
+            <span class="aui-icon icon-required">Required</span>
+        </label>
+        <input class="text short-field" id="recurring-issues-period" name="recurringIssuesPeriod"
+               type="text" value="">
+        <span class="aui-form example"> (eg. 3w 4d 12h)</span>
+        <div class="description">Create recurring issue every chosen period</div>
+    </div>
+    <input type="hidden" id="is-recurring-issue" name="isRecurringIssue" value="false"/>
+{/template}
