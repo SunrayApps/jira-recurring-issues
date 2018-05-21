@@ -6,11 +6,12 @@ import com.atlassian.jira.testkit.client.restclient.SearchRequest;
 import it.com.sunrayapps.jira.plugin.ir.po.ExtendedCreateIssuePage;
 import it.com.sunrayapps.jira.plugin.ir.po.TopMenuPage;
 import it.com.sunrayapps.jira.plugin.ir.rule.JiraIntegrationTestRule;
-import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class CreateRecurringIssueTest {
     @Rule
@@ -23,7 +24,7 @@ public class CreateRecurringIssueTest {
         final TopMenuPage topMenuPage = jira.goTo(TopMenuPage.class);
         final ExtendedCreateIssuePage createIssuePage = topMenuPage.createIssue();
 
-        Assert.assertTrue(createIssuePage.isCrateRecurringCheckboxVisible());
+        assertTrue(createIssuePage.isCrateRecurringCheckboxVisible());
     }
 
     @Test
@@ -41,7 +42,7 @@ public class CreateRecurringIssueTest {
 
         final Integer issuesAfter = search.getSearch(new SearchRequest()).total;
 
-        Assert.assertTrue(issuesAfter == issuesBefore + 1);
+        assertTrue(issuesAfter == issuesBefore + 1);
     }
 
     @Test
@@ -56,9 +57,9 @@ public class CreateRecurringIssueTest {
         final List<String> errorMessagesAfterSubmit = createIssuePage.getErrorMessages();
 
 
-        Assert.assertEquals(0, errorMessagesBeforeSubmit.size());
-        Assert.assertEquals(1, errorMessagesAfterSubmit.size());
-        Assert.assertEquals("You must specify a summary of the issue.", errorMessagesAfterSubmit.get(0));
+        assertEquals(0, errorMessagesBeforeSubmit.size());
+        assertEquals(1, errorMessagesAfterSubmit.size());
+        assertEquals("You must specify a summary of the issue.", errorMessagesAfterSubmit.get(0));
     }
 
     @Test
@@ -74,8 +75,8 @@ public class CreateRecurringIssueTest {
         final List<String> errorMessagesAfterSubmit = createIssuePage.getErrorMessages();
 
 
-        Assert.assertEquals(0, errorMessagesBeforeSubmit.size());
-        Assert.assertEquals(1, errorMessagesAfterSubmit.size());
-        Assert.assertEquals("You must specify a summary of the issue.", errorMessagesAfterSubmit.get(0));
+        assertEquals(0, errorMessagesBeforeSubmit.size());
+        assertEquals(1, errorMessagesAfterSubmit.size());
+        assertEquals("You must specify a summary of the issue.", errorMessagesAfterSubmit.get(0));
     }
 }
