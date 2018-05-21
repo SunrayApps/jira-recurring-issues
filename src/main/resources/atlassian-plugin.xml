@@ -29,4 +29,15 @@
         <resource type="download" name="RecurringIssuesForm.soy.js" location="/templates/recurringIssuesForm.soy"/>
         <context>jira.global</context>
     </web-resource>
+
+    <servlet-filter name="Recurring issues dispatcher"
+                    key="recurring-issues-dispatcher"
+                    class="com.sunrayapps.jira.plugin.ri.filter.RecurringIssuesDispatcherFilter"
+                    location="before-dispatch"
+                    weight="20">
+        <description>Dispatches to issue create action either to standard issue creation service or to recurring issue's service.</description>
+        <url-pattern>*/QuickCreateIssue.jspa*</url-pattern>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+    </servlet-filter>
 </atlassian-plugin>
