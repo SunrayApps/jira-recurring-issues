@@ -52,6 +52,13 @@ public class ExtendedCreateIssuePage extends AbstractJiraPage {
         return createRecurringCheckbox.isVisible();
     }
 
+    public void createRecurringIssue() {
+        if (!createRecurringCheckbox.isSelected()) {
+            createRecurringCheckbox.click();
+            createRecurringCheckbox.timed().isSelected();
+        }
+    }
+
     @Override
     public TimedCondition isAt() {
         return createIssueSubmit.timed().isVisible();
