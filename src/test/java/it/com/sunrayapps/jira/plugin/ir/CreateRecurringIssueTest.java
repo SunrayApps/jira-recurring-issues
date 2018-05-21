@@ -76,7 +76,8 @@ public class CreateRecurringIssueTest {
 
 
         assertEquals(0, errorMessagesBeforeSubmit.size());
-        assertEquals(1, errorMessagesAfterSubmit.size());
-        assertEquals("You must specify a summary of the issue.", errorMessagesAfterSubmit.get(0));
+        assertEquals(2, errorMessagesAfterSubmit.size());
+        assertEquals("You can't create recurring issue without a period.", errorMessagesAfterSubmit.get(0));
+        assertEquals("You must specify a summary of the issue.", errorMessagesAfterSubmit.get(1));
     }
 }
