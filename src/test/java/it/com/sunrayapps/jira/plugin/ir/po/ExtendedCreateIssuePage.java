@@ -5,6 +5,11 @@ import com.atlassian.pageobjects.elements.ElementBy;
 import com.atlassian.pageobjects.elements.PageElement;
 import com.atlassian.pageobjects.elements.query.TimedCondition;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.List;
+
+import static com.atlassian.collectors.CollectorsUtil.toImmutableList;
 
 public class ExtendedCreateIssuePage extends AbstractJiraPage {
     @ElementBy(
@@ -33,7 +38,14 @@ public class ExtendedCreateIssuePage extends AbstractJiraPage {
 
     public void submit() {
         submit.click();
-        driver.waitUntilElementIsNotVisible(By.id("create-issue-dialog"));
+        driver.waitUntil(webDriver -> webDriver.findElements(By.id("create-issue-dialog")).size() == 0 || getErrorMessages().size() > 0);
+    }
+
+    public List<String> getErrorMessages() {
+        return driver.findElements(By.cssSelector("#create-issue-dialog .error"))
+            .stream()
+            .map(WebElement::getText)
+            .collect(toImmutableList());
     }
 
     public boolean isCrateRecurringCheckboxVisible() {

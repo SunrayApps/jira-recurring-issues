@@ -10,6 +10,8 @@ import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.List;
+
 public class CreateRecurringIssueTest {
     @Rule
     public JiraIntegrationTestRule jiraIntegrationTestRule = new JiraIntegrationTestRule();
@@ -40,5 +42,22 @@ public class CreateRecurringIssueTest {
         final Integer issuesAfter = search.getSearch(new SearchRequest()).total;
 
         Assert.assertTrue(issuesAfter == issuesBefore + 1);
+    }
+
+    @Test
+    public void shouldCreateIssueValidationWork() {
+        jira.quickLoginAsAdmin();
+
+        final TopMenuPage topMenuPage = jira.goTo(TopMenuPage.class);
+        final ExtendedCreateIssuePage createIssuePage = topMenuPage.createIssue();
+        final List<String> errorMessagesBeforeSubmit = createIssuePage.getErrorMessages();
+        createIssuePage.submit();
+
+        final List<String> errorMessagesAfterSubmit = createIssuePage.getErrorMessages();
+
+
+        Assert.assertEquals(0, errorMessagesBeforeSubmit.size());
+        Assert.assertEquals(1, errorMessagesAfterSubmit.size());
+        Assert.assertEquals("You must specify a summary of the issue.", errorMessagesAfterSubmit.get(0));
     }
 }
